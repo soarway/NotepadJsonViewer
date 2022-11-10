@@ -7,3 +7,7 @@ Notepad++ plugin,   Json Viewer , Format C/C++ code
 编译需要ISO C++ 20标准， 否则无法编译通过
 
 如果Visual Studio 2019的版本过低， 需要升级后才能支持ISO C++20标准
+
+编译出来的插件复制到Notepad++的安装目录  C:\Program Files (x86)\Notepad++\plugins\NPPJSONViewer\
+
+编译的时候要看Notepad++是32位还是64位，不能搞错
