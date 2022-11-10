@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+*.tlog
+*.pdb
+*.Build.CppClean.log
+*.ipch
+*.ilk
+*.recipe
+*.idb
