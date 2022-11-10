@@ -133,7 +133,7 @@ static bool isGhDh(char* ps, char* pe) {
 }
 
 
-
+//解析C/C++代码
 std::string JsonHandler::parse_code_text(char *codeText)
 {
     std::string retstring;
@@ -262,31 +262,15 @@ std::string JsonHandler::parse_code_text(char *codeText)
                     }
                 }
                 //写入文件
-                // fwrite(newLine, sizeof(char), strlen(newLine), fpnew);
+
                 retstring.append(newLine);
             }
         }
         else if (*(ptr + len - 1) == '{')//以 { 结尾
         {
-            //char *pe = ptr + len - 1;
-            //char *ps = ptr;
+
             //倒着查找=
             bool bf = isGhDh(ptr, ptr+len-1);
-            //while  ( pe > ps ) {
-            //    pe--;
-            //    if (std::isblank(*pe, std::locale("en_US.UTF-8"))) {
-            //        continue;
-            //    }
-            //    else if (*pe == '=')
-            //    {
-            //        bf = true;
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        break;
-            //    }
-            //}
 
             if (!bf) {//enum bq2589x_vbus_type {
                 if ( strstr(ptr, "enum") ) {
