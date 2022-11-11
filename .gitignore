@@ -38,3 +38,9 @@
 *.ilk
 *.recipe
 *.idb
+*.db
+*.db-shm
+*.opendb
+NPPJSONViewer.log
+UtilityLib.log
+

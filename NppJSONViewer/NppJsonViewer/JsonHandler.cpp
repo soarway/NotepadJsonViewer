@@ -348,6 +348,42 @@ std::string JsonHandler::parse_code_text(char *codeText)
             // fwrite(newLine, sizeof(char), strlen(newLine), fpnew);
             retstring.append(newLine);
         }
+        else if (*(ptr + len - 1) == '(')    //以 = 结尾
+        {
+            char newLine[4096] = { 0 };
+            char nextBuf[2048] = { 0 };
+
+            *(ptr + len) = '\0';
+            strcat(newLine, buf);
+            strcat(newLine, " ");
+            while (getNextLine(nextBuf, sizeof(nextBuf), &datalen, pend))
+            {
+                pend += datalen;
+                ptr = nextBuf;
+                while (std::isblank(*ptr, std::locale("en_US.UTF-8")))
+                    ptr++;
+                len = strlen(ptr);
+                while (len > 0 && (std::isblank(*(ptr + len - 1), std::locale("en_US.UTF-8")) || (*(ptr + len - 1) == '\r') || (*(ptr + len - 1) == '\n')))
+                    len--;
+                if (*(ptr + len - 1) == ',')
+                {
+                    //逗号结尾
+                    *(ptr + len) = '\0';
+                    strcat(newLine, ptr);
+                    strcat(newLine, " ");
+                    continue;
+                }
+                else
+                {
+                    strcat(newLine, ptr);
+                    //strcat(newLine, "\n");
+                    break;
+                }
+            }
+            //写入文件
+            // fwrite(newLine, sizeof(char), strlen(newLine), fpnew);
+            retstring.append(newLine);
+        }
         else
         {
             retstring.append(buf);
